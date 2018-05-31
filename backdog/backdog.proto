@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.scue.backdog";
+option java_outer_classname = "BackDogProto";
+
+package backdog;
+
+// 提供的RPC服务
+service Exec {
+    rpc Command (Request) returns (Response) {}
+}
+
+message Request {
+    string command = 1; // req 的json序列化后的文本进行加密得到的文本
+}
+
+message Response {
+    bytes stdout = 1;
+    bytes stderr = 2;
+    string error = 3;
+    string message = 4;
+}
